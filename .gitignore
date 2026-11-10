@@ -1,0 +1,25 @@
+# === Python & Virtual Environment ===
+venv/
+env/
+ENV/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+
+# === Project Data (Uploads & Outputs) ===
+uploads/
+outputs/
+temp_combined.txt
+
+# === IDE & Editor Settings ===
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# === OS Generated Files ===
+Thumbs.db
+ehthumbs.db
+.DS_Store

@@ -1,0 +1,18 @@
+# Web Framework
+flask>=3.0.0
+werkzeug>=3.0.0
+
+# Document Generation & Parsing
+python-docx>=1.1.0
+pypdf>=4.0.0
+
+# Local AI & Machine Learning (Whisper & Ollama)
+openai-whisper>=20231117
+ollama>=0.1.6
+
+# OCR (Optical Character Recognition)
+pytesseract>=0.3.10
+Pillow>=10.0.0
+
+# PyTorch (Required backend for Whisper on local GPU/CPU)
+torch>=2.0.0

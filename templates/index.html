@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Deterministic Meeting Suite</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 0; padding: 40px; }
+        .container { max-width: 650px; background: white; margin: 0 auto; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        h1 { color: #1f4e78; margin-top: 0; font-size: 24px; text-align: center; }
+        p.subtitle { text-align: center; color: #666; font-size: 14px; margin-bottom: 25px; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-weight: bold; margin-bottom: 6px; color: #333; }
+        input[type="file"], input[type="text"] { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .checkbox-group { display: flex; align-items: center; gap: 10px; margin-top: 10px; }
+        button { width: 100%; background-color: #1f4e78; color: white; padding: 12px; border: none; border-radius: 4px; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 15px; }
+        button:hover { background-color: #153554; }
+        .alert { background-color: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 15px; }
+        .file-hint { font-size: 12px; color: #888; margin-top: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Deterministic Meeting Suite</h1>
+        <p class="subtitle">Upload audio/video, screenshots, or rough notes (.txt, .docx, .pdf) to export a formatted Word MoM.</p>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <form action="/" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="media_file">1. Audio / Video Recording</label>
+                <input type="file" name="media_file" id="media_file" accept=".mp3,.wav,.m4a,.mp4,.mkv,.avi">
+                <div class="file-hint">Supported: MP3, WAV, M4A, MP4, MKV</div>
+            </div>
+
+            <div class="form-group">
+                <label for="image_file">2. Screenshot / Whiteboard Image</label>
+                <input type="file" name="image_file" id="image_file" accept=".png,.jpg,.jpeg">
+                <div class="file-hint">Supported: PNG, JPG, JPEG</div>
+            </div>
+
+            <div class="form-group">
+                <label for="notes_file">3. Rough Notes File</label>
+                <input type="file" name="notes_file" id="notes_file" accept=".txt,.docx,.pdf">
+                <div class="file-hint">Supported: TXT, DOCX, PDF</div>
+            </div>
+
+            <div class="form-group">
+                <label for="model_name">Local LLM Model (Ollama)</label>
+                <input type="text" name="model_name" id="model_name" value="gemma2:2b">
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" name="use_llm" id="use_llm" checked>
+                <label for="use_llm">Use Local LLM for Contradiction Logging & Synthesis</label>
+            </div>
+
+            <button type="submit">🚀 Export Minutes of Meeting (.docx)</button>
+        </form>
+    </div>
+</body>
+</html>
